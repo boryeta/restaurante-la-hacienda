@@ -68,10 +68,9 @@ a WebP + JPG; el catálogo está en `src/data/media.ts`). Se usan en el hero, la
 galería, la carta, el domingo y el showcase de ambientes.
 
 Lo que aún convendría mejorar:
-- **Mayor resolución de la fachada y el salón.** `exterior-terraza` (512×384) y
-  `salon` (400×300) son pequeñas para pantalla completa; se tratan con grano y
-  gradiente para que luzcan, pero una versión en alta del hero y del salón daría
-  un salto de calidad notable.
+- **Salón en alta resolución.** `salon` (400×300) sigue siendo pequeña; se trata
+  con grano y gradiente, pero una versión en alta daría un salto de calidad.
+  (La fachada del hero ya está en alta: `exterior-terraza`, 1920×1072.)
 - **Foto real de paella / arroz.** El domingo usa ahora la foto del salón + un
   guiño al postre; falta una **foto de paella** de verdad para esa sección.
 - **Más fotos por ambiente y por plato** enriquecerían la galería en marquee.

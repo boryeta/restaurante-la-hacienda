@@ -21,9 +21,9 @@ export const LOCAL = {
   exterior: {
     webp: `${L}/exterior-terraza.webp`,
     jpg: `${L}/exterior-terraza.jpg`,
-    alt: 'Fachada de La Hacienda del Sur con su toldo rojo y la terraza en la Calle Tarragona, Alicante',
-    w: 512,
-    h: 384,
+    alt: 'Fachada de La Hacienda del Sur con sus toldos rojos y la terraza en la Calle Tarragona, Alicante, a la luz de la tarde',
+    w: 1920,
+    h: 1072,
     bg: '#7c341c',
   },
   barril: {
