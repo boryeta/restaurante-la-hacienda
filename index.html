@@ -4,21 +4,74 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <title>La Hacienda del Sur · Restaurante y tapería en Nuevo San Blas, Alicante</title>
     <meta
       name="description"
-      content="La Hacienda del Sur — cocina mediterránea y española con toques andaluces en Alicante. Barril, salón o terraza: elige tu momento. Arroces de encargo, carnes a la brasa y tapas de diseño."
+      content="Cocina mediterránea y española con toques andaluces en Nuevo San Blas, Alicante. Barril, salón o terraza: arroces y paellas de encargo, carnes a la brasa, montaditos y tostas de diseño. Reservas para grupos y celebraciones."
     />
     <meta name="theme-color" content="#1E3A4C" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://restaurante-la-hacienda.boryeta.workers.dev/" />
 
-    <!-- Fuentes: serif editorial (Fraunces), sans limpia (Inter), mono de mercado (IBM Plex Mono) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap"
-      rel="stylesheet"
+    <!-- Open Graph -->
+    <meta property="og:type" content="restaurant" />
+    <meta property="og:site_name" content="La Hacienda del Sur" />
+    <meta property="og:title" content="La Hacienda del Sur · Cocina andaluza de mercado en Alicante" />
+    <meta
+      property="og:description"
+      content="Barril, salón o terraza — elige tu momento. Arroces y paellas de encargo, carnes a la brasa y tapas de diseño en Nuevo San Blas, Alicante."
     />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:url" content="https://restaurante-la-hacienda.boryeta.workers.dev/" />
+    <meta property="og:image" content="https://restaurante-la-hacienda.boryeta.workers.dev/media/local/exterior-terraza.jpg" />
+    <meta property="og:image:alt" content="Fachada de La Hacienda del Sur con su toldo rojo y la terraza" />
 
-    <title>La Hacienda del Sur · Cocina andaluza de mercado en Alicante</title>
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="La Hacienda del Sur · Alicante" />
+    <meta
+      name="twitter:description"
+      content="Cocina andaluza de mercado en tres ambientes: barril, salón o terraza. Nuevo San Blas, Alicante."
+    />
+    <meta name="twitter:image" content="https://restaurante-la-hacienda.boryeta.workers.dev/media/local/exterior-terraza.jpg" />
+
+    <!-- Datos estructurados para SEO local (resultados enriquecidos en Google) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": "La Hacienda del Sur",
+        "description": "Restaurante y tapería de cocina mediterránea y española con toques andaluces en el barrio de Nuevo San Blas, Alicante.",
+        "servesCuisine": ["Mediterránea", "Española", "Andaluza"],
+        "priceRange": "€€",
+        "url": "https://restaurante-la-hacienda.boryeta.workers.dev/",
+        "telephone": "+34965204335",
+        "email": "restaurantelahaciendadelsur@gmail.com",
+        "image": [
+          "https://restaurante-la-hacienda.boryeta.workers.dev/media/local/exterior-terraza.jpg",
+          "https://restaurante-la-hacienda.boryeta.workers.dev/media/local/barril-barra.jpg",
+          "https://restaurante-la-hacienda.boryeta.workers.dev/media/local/salon.jpg"
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Calle Tarragona, 12",
+          "addressLocality": "Alicante",
+          "addressRegion": "Alicante",
+          "postalCode": "03005",
+          "addressCountry": "ES"
+        },
+        "hasMap": "https://www.google.com/maps/search/?api=1&query=La+Hacienda+del+Sur+Calle+Tarragona+12+Alicante",
+        "acceptsReservations": true,
+        "openingHoursSpecification": [
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "11:30", "closes": "16:30" },
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday", "Wednesday", "Thursday"], "opens": "10:30", "closes": "16:00" },
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday", "Wednesday", "Thursday"], "opens": "20:00", "closes": "23:30" },
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday", "Saturday"], "opens": "11:00", "closes": "16:00" },
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday", "Saturday"], "opens": "20:00", "closes": "00:00" }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

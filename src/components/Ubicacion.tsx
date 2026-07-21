@@ -99,6 +99,25 @@ export function Ubicacion() {
           </div>
         </Reveal>
       </div>
+
+      {/* Mapa real embebido */}
+      <Reveal className="mx-auto mt-12 max-w-7xl px-6 md:px-10">
+        <div className="overflow-hidden rounded-3xl border border-anil/10 shadow-sm">
+          <iframe
+            title="Mapa de La Hacienda del Sur en Calle Tarragona 12, Alicante"
+            src="https://maps.google.com/maps?q=Calle%20Tarragona%2012%2C%2003005%20Alicante&z=16&output=embed"
+            className="h-[320px] w-full md:h-[420px]"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </div>
+        <p className="mt-3 text-center text-xs text-anil-500/70">
+          A un paso del puente rojo · {' '}
+          <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="text-terracota hover:underline">
+            abrir en Google Maps
+          </a>
+        </p>
+      </Reveal>
     </section>
   );
 }

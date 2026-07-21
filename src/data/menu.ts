@@ -1,4 +1,5 @@
 import type { AmbienteId } from './ambientes';
+import { PLATOS, type Foto } from './media';
 
 /**
  * La carta se organiza según en qué ambiente tiene más sentido pedir cada plato.
@@ -23,6 +24,10 @@ export interface CartaGrupo {
   titulo: string;
   /** Qué se pide aquí, en una frase */
   sumario: string;
+  /** Foto real destacada del ambiente (plato estrella) */
+  fotoDestacada: Foto;
+  /** Nombre del plato de la foto destacada */
+  platoDestacado: string;
   platos: Plato[];
 }
 
@@ -31,6 +36,8 @@ export const CARTA: CartaGrupo[] = [
     ambiente: 'barril',
     titulo: 'Para el barril',
     sumario: 'Tapas, montaditos y tostas de diseño para picar de pie.',
+    fotoDestacada: PLATOS.montaditos,
+    platoDestacado: 'Montaditos de entraña y de secreto',
     platos: [
       {
         nombre: 'Croquetas de bacalao',
@@ -59,6 +66,8 @@ export const CARTA: CartaGrupo[] = [
     ambiente: 'salon',
     titulo: 'Para el salón',
     sumario: 'Arroces de encargo, carnes a la brasa y platos de cuchara.',
+    fotoDestacada: PLATOS.carneSalsa,
+    platoDestacado: 'Rabo de toro en salsa',
     platos: [
       {
         nombre: 'Cigalas fritas con ajetes y jamón ibérico',
@@ -91,7 +100,15 @@ export const CARTA: CartaGrupo[] = [
     ambiente: 'terraza',
     titulo: 'Para la terraza',
     sumario: 'Raciones para ir compartiendo a la sombra de la parra.',
+    fotoDestacada: PLATOS.ensalada,
+    platoDestacado: 'Ensalada con ventresca y PX',
     platos: [
+      {
+        nombre: 'Ensalada con ventresca y PX',
+        descripcion:
+          'Brotes con ventresca, pimientos asados, tomate y aceitunas, con reducción de Pedro Ximénez.',
+        precio: '≈ 9,50 €',
+      },
       {
         nombre: 'Ensaladilla rusa casera',
         descripcion: 'Hecha en casa, sin atajos. La de toda la vida, bien de punto.',

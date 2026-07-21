@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import { Reveal } from './Reveal';
 import { RESTAURANTE } from '../data/restaurante';
+import { LOCAL, PLATOS } from '../data/media';
+import { Img } from './Img';
 
 /**
  * Domingo en familia: el menú especial de domingo, las paellas de encargo y
@@ -57,61 +59,37 @@ export function DomingoFamilia() {
           </a>
         </Reveal>
 
-        {/* Bloque visual: "mantel" de domingo con placeholder */}
+        {/* Bloque visual: foto real del salón + guiño al postre */}
         <Reveal className="order-1 md:order-2" delay={0.1}>
           <motion.div
             whileHover={{ rotate: -0.6, scale: 1.01 }}
             transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-            className="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] shadow-[0_40px_80px_-40px_rgba(30,58,76,0.5)]"
-            style={{
-              background:
-                'radial-gradient(120% 120% at 30% 20%, #C96A48 0%, #B5502E 40%, #7C341C 100%)',
-            }}
+            className="relative aspect-[4/5] w-full"
           >
-            {/* Sombra de parra sobre el "mantel" */}
-            <div className="patio-shadows patio-shadows--light" aria-hidden />
-            {/* Paella estilizada como placeholder */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <PaellaMotif />
-            </div>
-            <span className="absolute bottom-4 left-5 font-mono text-[10px] uppercase tracking-widest text-cal-50/60">
-              placeholder · foto de paella real pendiente
-            </span>
+            <Img
+              foto={LOCAL.salon}
+              className="grain h-full w-full rounded-[2rem] shadow-[0_40px_80px_-40px_rgba(30,58,76,0.55)]"
+              sizes="(max-width: 768px) 100vw, 45vw"
+            />
+            {/* Sombra de parra sobre la foto */}
+            <div className="patio-shadows patio-shadows--light pointer-events-none rounded-[2rem]" aria-hidden />
+
+            {/* Inset con el postre, como remate dulce del domingo */}
+            <motion.figure
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+              className="absolute -bottom-6 -left-4 w-40 overflow-hidden rounded-2xl border-4 border-[#F1E4CE] shadow-xl sm:w-48"
+            >
+              <Img foto={PLATOS.postre} className="aspect-square w-full" />
+              <figcaption className="absolute inset-x-0 bottom-0 bg-anil-900/70 px-3 py-1.5 font-mono text-[9px] uppercase tracking-widest text-cal-50/80">
+                …y de postre
+              </figcaption>
+            </motion.figure>
           </motion.div>
         </Reveal>
       </div>
     </section>
-  );
-}
-
-function PaellaMotif() {
-  return (
-    <svg viewBox="0 0 240 240" className="h-64 w-64" aria-hidden>
-      <circle cx="120" cy="120" r="96" fill="#5E3A22" />
-      <circle cx="120" cy="120" r="86" fill="#C98A2E" />
-      <circle cx="120" cy="120" r="86" fill="url(#rice)" opacity="0.5" />
-      {/* Asas */}
-      <circle cx="20" cy="120" r="10" fill="#5E3A22" />
-      <circle cx="220" cy="120" r="10" fill="#5E3A22" />
-      {/* Ingredientes */}
-      {[
-        [90, 90],
-        [150, 100],
-        [120, 150],
-        [80, 140],
-        [160, 150],
-        [110, 90],
-      ].map(([x, y], i) => (
-        <ellipse key={i} cx={x} cy={y} rx="10" ry="6" fill={i % 2 ? '#B5502E' : '#7C1E2B'} />
-      ))}
-      {[100, 140, 120].map((x, i) => (
-        <rect key={`p${i}`} x={x} y={70 + i * 30} width="26" height="6" rx="3" fill="#3F5E3A" />
-      ))}
-      <defs>
-        <pattern id="rice" width="8" height="8" patternUnits="userSpaceOnUse">
-          <circle cx="2" cy="2" r="1.1" fill="#E3D6BE" />
-        </pattern>
-      </defs>
-    </svg>
   );
 }

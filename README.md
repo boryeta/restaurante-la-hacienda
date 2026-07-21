@@ -45,11 +45,11 @@ npm run lint     # typecheck (tsc --noEmit)
 
 ## Accesibilidad y rendimiento
 
-- **`prefers-reduced-motion`:** si el usuario pide movimiento reducido, la escena
-  3D se sustituye por un selector de pestañas con crossfade de "imagen" (sin
-  perder la funcionalidad de elegir ambiente). Los contadores muestran el valor
-  final y las franjas de patio quedan estáticas.
-- **Sin WebGL:** mismo fallback de pestañas.
+- **`prefers-reduced-motion`:** si el usuario pide movimiento reducido, la maqueta
+  3D se sustituye por la **foto real** del ambiente (sin perder la funcionalidad de
+  elegir espacio). Los contadores muestran el valor final, las franjas de patio, el
+  Ken Burns y el marquee quedan estáticos.
+- **Sin WebGL:** mismo fallback a foto real.
 - **Móvil:** el selector funciona por *tap* (no por hover). En dispositivos de
   gama baja se reduce el DPR y se desactivan sombras suaves.
 - La escena 3D se carga con `import()` diferido: no se descarga si no se va a usar.
@@ -62,15 +62,26 @@ Antes de publicar, hay que sustituir / verificar lo siguiente **con datos
 confirmados directamente por el restaurante**. Todo lo marcado abajo es
 provisional y está señalado como tal en el propio código.
 
-### 1. Fotografía real (lo más importante)
-Ahora mismo **no hay ninguna foto real**; todo son ilustraciones/escenas
-estilizadas marcadas como placeholder:
-- **Fotos de los tres ambientes** (barril, salón, terraza) — para el fallback de
-  pestañas y, si se quiere, una galería. Ver `src/components/AmbienteFallback.tsx`.
-- **Fotos de platos**, especialmente los de referencia: cigalas fritas con
-  ajetes y jamón, rabo de toro, solomillo de atún. Ver `src/components/Carta.tsx`.
-- **Foto de paella / mesa de domingo** — placeholder SVG en
-  `src/components/DomingoFamilia.tsx`.
+### 1. Fotografía real — ✅ ya integrada (con matices)
+Ya hay **fotos reales del local y de los platos** (en `public/media/`, optimizadas
+a WebP + JPG; el catálogo está en `src/data/media.ts`). Se usan en el hero, la
+galería, la carta, el domingo y el showcase de ambientes.
+
+Lo que aún convendría mejorar:
+- **Mayor resolución de la fachada y el salón.** `exterior-terraza` (512×384) y
+  `salon` (400×300) son pequeñas para pantalla completa; se tratan con grano y
+  gradiente para que luzcan, pero una versión en alta del hero y del salón daría
+  un salto de calidad notable.
+- **Foto real de paella / arroz.** El domingo usa ahora la foto del salón + un
+  guiño al postre; falta una **foto de paella** de verdad para esa sección.
+- **Más fotos por ambiente y por plato** enriquecerían la galería en marquee.
+- **Cigalas y solomillo de atún** (platos estrella) aún no tienen foto propia;
+  se muestran como tarjeta de texto.
+
+### 1b. Vídeo del hero (opcional, ya preparado)
+El hero está **listo para vídeo de fondo**: basta con dejar un clip en
+`public/media/video/hero.mp4` y poner su ruta en la constante `HERO_VIDEO` de
+`src/components/Hero.tsx`. Mientras tanto usa la foto de la fachada.
 
 ### 2. Precios de la carta
 Los precios en `src/data/menu.ts` son **orientativos** (marcados con `≈` o
@@ -103,13 +114,34 @@ en reseñas reales). Conviene confirmar el alcance exacto (¿carta sin gluten?,
 El horario de `src/data/restaurante.ts` es el facilitado; conviene una última
 confirmación de que sigue vigente (sobre todo festivos / temporada).
 
+### 8. URL canónica / dominio
+Las etiquetas SEO (`canonical`, OpenGraph, `sitemap.xml`) apuntan a
+`https://restaurante-la-hacienda.boryeta.workers.dev/`. Si se contrata un
+**dominio propio**, hay que actualizar esa URL en `index.html` y
+`public/sitemap.xml`.
+
 ---
 
+## SEO ya implementado
+- **Datos estructurados JSON-LD `Restaurant`** en `index.html` (dirección, geo,
+  teléfono, horario, cocina, rango de precio) → apto para resultados enriquecidos.
+  *No* se incluye `aggregateRating` a propósito, porque la valoración está sin
+  verificar (ver punto 3).
+- **OpenGraph + Twitter Card** con la foto de la fachada.
+- **`robots.txt` + `sitemap.xml`** en `public/`.
+- **Imágenes** en WebP + JPG, `width/height` (buen CLS), `loading="lazy"` y `alt`
+  descriptivos.
+
 ### Nota sobre las fuentes tipográficas
-Las fuentes (Fraunces, Inter, IBM Plex Mono) se cargan desde Google Fonts vía
-`<link>` en `index.html`. Si el entorno de despliegue no tiene salida a
-`fonts.googleapis.com`, la web cae a las fuentes del sistema sin romperse. Para
-producción sin conexión externa, se pueden auto-alojar las fuentes.
+Las fuentes (Fraunces, Inter, IBM Plex Mono) se **auto-alojan** vía `@fontsource`
+(se empaquetan en el build, sin llamadas a Google Fonts en runtime): más rápido y
+sin depender de red externa.
+
+### Optimización de imágenes
+Las fotos se optimizan con `scripts/optimize-media.mjs` (usa `sharp`, se ejecuta a
+mano una vez; no forma parte del build). Para procesar fotos nuevas: colócalas y
+ajusta el mapa de `JOBS` en ese script, `npm i -D sharp` y `node
+scripts/optimize-media.mjs`.
 
 ### Nota honesta sobre el contenido
 No se han inventado testimonios con nombre, cifras de comensales ni menciones de

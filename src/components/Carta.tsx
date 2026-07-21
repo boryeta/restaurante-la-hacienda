@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { CARTA } from '../data/menu';
-import { AMBIENTES, getAmbiente, type AmbienteId } from '../data/ambientes';
+import { getAmbiente, type AmbienteId } from '../data/ambientes';
 import { AmbienteTabs } from './AmbienteTabs';
 import { DishCard } from './DishCard';
 import { Reveal, RevealGroup } from './Reveal';
 import { PatioLight } from './PatioLight';
+import { Img } from './Img';
 
 /**
- * La carta no es una lista plana: se organiza según en qué ambiente tiene
- * más sentido pedir cada plato. Tapas para el barril, arroces y carnes para
- * el salón, raciones para compartir en la terraza.
+ * La carta organizada por ambiente, ahora con foto real destacada del plato
+ * estrella de cada espacio junto a las tarjetas.
  */
 export function Carta() {
   const [active, setActive] = useState<AmbienteId>('salon');
@@ -34,38 +34,62 @@ export function Carta() {
           </p>
         </Reveal>
 
-        {/* Selector de ambiente de la carta */}
         <div className="mt-8 inline-flex rounded-full border border-anil/10 bg-cal-50 p-1.5 shadow-sm">
           <AmbienteTabs active={active} onChange={setActive} groupId="carta" />
         </div>
 
-        {/* Sumario del grupo activo */}
-        <div className="mt-6 min-h-[2rem]">
+        <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+          {/* Foto real destacada */}
           <AnimatePresence mode="wait">
-            <motion.p
+            <motion.figure
               key={active}
-              initial={{ opacity: 0, x: -8 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 8 }}
-              transition={{ duration: 0.3 }}
-              className="font-display text-lg italic text-anil-500"
+              initial={{ opacity: 0, scale: 1.03 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              className="group relative overflow-hidden rounded-3xl shadow-[0_30px_60px_-30px_rgba(30,58,76,0.55)]"
             >
-              {grupo.sumario}
-            </motion.p>
+              <Img
+                foto={grupo.fotoDestacada}
+                className="aspect-[4/5] w-full lg:aspect-auto lg:h-full"
+                imgClassName="transition-transform duration-[1.2s] ease-out group-hover:scale-105"
+                sizes="(max-width: 1024px) 100vw, 40vw"
+              />
+              <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-anil-900/90 via-anil-900/30 to-transparent p-6 pt-20">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-terracota-400">
+                  Lo más pedido · {ambiente.nombre}
+                </span>
+                <p className="mt-1 font-display text-2xl font-medium text-cal-50">
+                  {grupo.platoDestacado}
+                </p>
+              </figcaption>
+            </motion.figure>
           </AnimatePresence>
-        </div>
 
-        {/* Rejilla de platos — se re-anima al cambiar de ambiente */}
-        <AnimatePresence mode="wait">
-          <RevealGroup
-            key={active}
-            className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
-          >
-            {grupo.platos.map((plato) => (
-              <DishCard key={plato.nombre} plato={plato} tint={ambiente.tint} />
-            ))}
-          </RevealGroup>
-        </AnimatePresence>
+          {/* Tarjetas de plato */}
+          <div>
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={active}
+                initial={{ opacity: 0, x: -8 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 8 }}
+                transition={{ duration: 0.3 }}
+                className="mb-5 font-display text-lg italic text-anil-500"
+              >
+                {grupo.sumario}
+              </motion.p>
+            </AnimatePresence>
+
+            <AnimatePresence mode="wait">
+              <RevealGroup key={active} className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                {grupo.platos.map((plato) => (
+                  <DishCard key={plato.nombre} plato={plato} tint={ambiente.tint} />
+                ))}
+              </RevealGroup>
+            </AnimatePresence>
+          </div>
+        </div>
 
         <p className="mt-10 max-w-2xl text-sm text-anil-500/80">
           <span className="font-mono text-terracota">·</span> Los precios son
@@ -75,25 +99,15 @@ export function Carta() {
         </p>
       </div>
 
-      {/* Transición suave hacia "Domingo en familia": onda de color que funde
-          esta sección con la siguiente en lugar de un corte recto. */}
+      {/* Transición suave hacia "Domingo en familia" */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-40 translate-y-1">
-        <svg
-          className="h-full w-full"
-          viewBox="0 0 1440 160"
-          preserveAspectRatio="none"
-          aria-hidden
-        >
+        <svg className="h-full w-full" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden>
           <path
             d="M0,64 C240,120 480,20 720,52 C960,84 1200,150 1440,96 L1440,160 L0,160 Z"
             fill="#F1E4CE"
           />
         </svg>
       </div>
-
-      <span className="sr-only">
-        Carta organizada por los {AMBIENTES.length} ambientes del restaurante.
-      </span>
     </section>
   );
 }
