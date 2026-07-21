@@ -3,6 +3,7 @@ import { Reveal } from './Reveal';
 import { RESTAURANTE } from '../data/restaurante';
 import { LOCAL, PLATOS } from '../data/media';
 import { Img } from './Img';
+import { AnimatedHeading } from './AnimatedHeading';
 
 /**
  * Domingo en familia: el menú especial de domingo, las paellas de encargo y
@@ -19,9 +20,10 @@ export function DomingoFamilia() {
         {/* Texto */}
         <Reveal className="order-2 md:order-1">
           <p className="eyebrow">Domingo en familia</p>
-          <h2 className="mt-3 font-display text-3xl font-medium leading-tight text-anil sm:text-4xl md:text-5xl">
-            El día de juntar las mesas
-          </h2>
+          <AnimatedHeading
+            text="El día de juntar las mesas"
+            className="mt-3 font-display text-3xl font-medium leading-tight text-anil sm:text-4xl md:text-5xl"
+          />
           <p className="mt-4 text-base leading-relaxed text-anil-500 md:text-lg">
             El domingo es de las familias. Menú especial pensado para venir con
             niños —los tratamos con mimo— y paellas de encargo que salen a la

@@ -1,6 +1,7 @@
 import { LOCAL, PLATOS, type Foto } from '../data/media';
 import { Reveal } from './Reveal';
 import { Img } from './Img';
+import { AnimatedHeading } from './AnimatedHeading';
 
 /**
  * Galería en marquee horizontal infinito con las fotos reales del local y los
@@ -25,9 +26,10 @@ export function GaleriaMarquee() {
     <section className="relative overflow-hidden bg-anil-900 py-16 md:py-20">
       <Reveal className="mx-auto mb-10 max-w-7xl px-6 md:px-10">
         <p className="eyebrow text-terracota-400">Del mercado a la mesa</p>
-        <h2 className="mt-3 max-w-2xl font-display text-3xl font-medium leading-tight text-cal-50 sm:text-4xl">
-          Un vistazo a la casa
-        </h2>
+        <AnimatedHeading
+          text="Un vistazo a la casa"
+          className="mt-3 max-w-2xl font-display text-3xl font-medium leading-tight text-cal-50 sm:text-4xl"
+        />
       </Reveal>
 
       <div

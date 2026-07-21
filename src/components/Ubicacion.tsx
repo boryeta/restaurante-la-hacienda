@@ -1,5 +1,6 @@
 import { RESTAURANTE, DIRECCION_LINEA, MAPS_URL } from '../data/restaurante';
 import { Reveal } from './Reveal';
+import { AnimatedHeading } from './AnimatedHeading';
 
 /** Ubicación, horario completo, parking y CTA de reserva. */
 export function Ubicacion() {
@@ -14,9 +15,10 @@ export function Ubicacion() {
         {/* Datos */}
         <Reveal>
           <p className="eyebrow">Dónde y cuándo</p>
-          <h2 className="mt-3 font-display text-3xl font-medium leading-tight text-anil sm:text-4xl md:text-5xl">
-            Nuevo San Blas, Alicante
-          </h2>
+          <AnimatedHeading
+            text="Nuevo San Blas, Alicante"
+            className="mt-3 font-display text-3xl font-medium leading-tight text-anil sm:text-4xl md:text-5xl"
+          />
 
           <div className="mt-8 space-y-6">
             <div>

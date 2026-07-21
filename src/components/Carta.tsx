@@ -5,6 +5,7 @@ import { DishCard } from './DishCard';
 import { RevealGroup, Reveal } from './Reveal';
 import { PatioLight } from './PatioLight';
 import { Img } from './Img';
+import { AnimatedHeading } from './AnimatedHeading';
 
 /**
  * La carta, por CATEGORÍAS de comida (tapas, arroces y carnes, ensaladas,
@@ -21,9 +22,10 @@ export function Carta() {
       <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-10">
         <Reveal className="max-w-2xl">
           <p className="eyebrow">Nuestra carta</p>
-          <h2 className="mt-3 font-display text-3xl font-medium leading-tight text-anil sm:text-4xl md:text-5xl">
-            Cocina de mercado, casera
-          </h2>
+          <AnimatedHeading
+            text="Cocina de mercado, casera"
+            className="mt-3 font-display text-3xl font-medium leading-tight text-anil sm:text-4xl md:text-5xl"
+          />
           <p className="mt-4 text-base leading-relaxed text-anil-500 md:text-lg">
             Bien elaborada y sin postureo. Elige una categoría y échale un ojo —
             desde los montaditos de la barra hasta los arroces de encargo y el

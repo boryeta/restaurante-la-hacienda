@@ -8,6 +8,7 @@ import { Ubicacion } from './components/Ubicacion';
 import { Footer } from './components/Footer';
 import { ScrollProgress } from './components/ScrollProgress';
 import { SiteHeader } from './components/SiteHeader';
+import { IntroCurtain } from './components/IntroCurtain';
 import { useSmoothScroll } from './lib/useSmoothScroll';
 
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
 
   return (
     <main className="relative">
+      <IntroCurtain />
       <ScrollProgress />
       <SiteHeader />
       <Hero />

@@ -1,6 +1,7 @@
-import { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { useRef, useState } from 'react';
+import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
 import { AMBIENTES, getAmbiente, type AmbienteId } from '../data/ambientes';
+import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
 import { RESTAURANTE } from '../data/restaurante';
 import { AMBIENTE_FOTO } from '../data/media';
 import { AmbienteTabs } from './AmbienteTabs';
@@ -23,9 +24,20 @@ export function Hero() {
   const [active, setActive] = useState<AmbienteId>('terraza');
   const ambiente = getAmbiente(active);
   const foto = AMBIENTE_FOTO[active];
+  const reduced = usePrefersReducedMotion();
+
+  // Scroll cinemático: el contenido del hero se eleva y se desvanece al bajar
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  });
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, -90]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.65], [1, 0]);
 
   return (
     <section
+      ref={sectionRef}
       id="hero"
       className="relative flex min-h-[100svh] flex-col overflow-hidden bg-anil-800 text-cal-50"
     >
@@ -85,7 +97,10 @@ export function Hero() {
       </header>
 
       {/* Contenido */}
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-end px-6 pb-12 md:pb-20 md:px-10">
+      <motion.div
+        style={reduced ? undefined : { y: contentY, opacity: contentOpacity }}
+        className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-end px-6 pb-12 md:pb-20 md:px-10"
+      >
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -146,7 +161,7 @@ export function Hero() {
             Ver la carta
           </a>
         </div>
-      </div>
+      </motion.div>
 
       {/* Indicador de scroll */}
       <div className="relative z-10 flex justify-center pb-6">

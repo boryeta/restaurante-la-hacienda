@@ -52,11 +52,16 @@ npm run lint     # typecheck (tsc --noEmit)
   final estático.
 
 ### Interacciones premium
+- **Intro de apertura**: cortina con la marca que revela el hero (una vez por sesión).
+- **Titulares con revelado por palabras** al entrar en viewport.
+- **Hero cinemático**: el contenido se eleva y se desvanece con el scroll.
 - **Smooth scroll (Lenis)** sincronizado con GSAP ScrollTrigger.
 - **Cabecera fija** que aparece al pasar el hero + **barra flotante de reserva** en
   móvil (mejor conversión).
 - **Barra de progreso** de lectura, **botones magnéticos** en los CTA y **parallax**
   sutil en el hero.
+
+Todo lo anterior respeta `prefers-reduced-motion`.
 - **Sin WebGL:** mismo fallback a foto real.
 - **Móvil:** el selector funciona por *tap* (no por hover). En dispositivos de
   gama baja se reduce el DPR y se desactivan sombras suaves.

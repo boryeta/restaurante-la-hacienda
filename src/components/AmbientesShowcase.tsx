@@ -9,6 +9,7 @@ import { AmbienteTabs } from './AmbienteTabs';
 import { PatioLight } from './PatioLight';
 import { Reveal } from './Reveal';
 import { Img } from './Img';
+import { AnimatedHeading } from './AnimatedHeading';
 
 const AmbienteScene = lazy(() =>
   import('../three/AmbienteScene').then((m) => ({ default: m.AmbienteScene })),
@@ -35,9 +36,10 @@ export function AmbientesShowcase() {
       <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-10">
         <Reveal className="max-w-2xl">
           <p className="eyebrow text-terracota-400">Tres ambientes, una casa</p>
-          <h2 className="mt-3 font-display text-3xl font-medium leading-tight sm:text-4xl md:text-5xl">
-            Explóralo antes de venir
-          </h2>
+          <AnimatedHeading
+            text="Explóralo antes de venir"
+            className="mt-3 font-display text-3xl font-medium leading-tight sm:text-4xl md:text-5xl"
+          />
           <p className="mt-4 text-base leading-relaxed text-cal-50/80 md:text-lg">
             Gira la escena y cambia de ambiente: a la izquierda, una maqueta 3D de
             cada espacio; a la derecha, cómo es de verdad. Barril, salón o terraza
