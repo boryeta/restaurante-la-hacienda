@@ -31,3 +31,10 @@ pnpm-debug.log*
 *.tsbuildinfo
 vite.config.js
 vite.config.d.ts
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
