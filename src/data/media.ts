@@ -29,9 +29,9 @@ export const LOCAL = {
   barril: {
     webp: `${L}/barril-barra.webp`,
     jpg: `${L}/barril-barra.jpg`,
-    alt: 'Barra rústica de piedra con barriles de vino, copas colgando y botellas de la bodega',
-    w: 900,
-    h: 500,
+    alt: 'Barra rústica de piedra con barriles Estrella Damm como mesas altas, copas colgando, vigas de madera y botellas de la bodega',
+    w: 1920,
+    h: 1072,
     bg: '#3a2c20',
   },
   salon: {
