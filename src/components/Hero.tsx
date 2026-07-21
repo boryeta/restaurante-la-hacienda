@@ -61,11 +61,11 @@ export function Hero() {
           </AnimatePresence>
         )}
 
-        {/* Capas de tratamiento: legibilidad + acabado cine */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-anil-900 via-anil-900/45 to-anil-900/70" />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-anil-900/90 via-anil-900/30 to-transparent" />
-        <div className="grain pointer-events-none absolute inset-0" />
-        <PatioLight variant="light" intensity={1.1} />
+        {/* Tratamiento: sólo lo justo para leer el texto, dejando ver más la foto */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-anil-900/85 via-anil-900/30 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-anil-900/75 to-transparent" />
+        <div className="grain pointer-events-none absolute inset-0 opacity-60" />
+        <PatioLight variant="light" intensity={0.85} />
       </div>
 
       {/* Barra superior */}
@@ -95,7 +95,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.05 }}
-          className="mt-4 max-w-2xl font-display text-5xl font-medium leading-[1.02] sm:text-6xl md:text-7xl"
+          className="mt-4 max-w-2xl font-display text-5xl font-medium leading-[1.02] [text-shadow:_0_2px_28px_rgba(12,23,31,0.55)] sm:text-6xl md:text-7xl"
         >
           ¿Barril, salón
           <br />o terraza?
