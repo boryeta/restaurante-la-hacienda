@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cal: #f7f2e9;
+  --anil: #1e3a4c;
+  --terracota: #b5502e;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-cal text-anil-800 font-sans antialiased;
+    /* Cal andaluz con un grano cálido muy sutil, no blanco plano */
+    background-color: var(--cal);
+    background-image: radial-gradient(
+       circle at 50% -10%,
+      rgba(181, 80, 46, 0.05),
+      transparent 55%
+    );
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: rgba(181, 80, 46, 0.22);
+    color: var(--anil);
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+    text-wrap: balance;
+  }
+
+  /* Respeta la preferencia de movimiento reducido a nivel global */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@layer components {
+  .btn-cta {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-terracota px-7 py-3
+           font-medium text-cal-50 shadow-[0_10px_30px_-12px_rgba(181,80,46,0.7)]
+           transition-all duration-300 hover:bg-terracota-600 hover:-translate-y-0.5
+           focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2
+           focus-visible:outline-terracota;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-anil/25
+           px-7 py-3 font-medium text-anil transition-all duration-300
+           hover:border-anil/60 hover:bg-anil/5;
+  }
+
+  .eyebrow {
+    @apply font-mono text-xs uppercase tracking-widest2 text-terracota;
+  }
+
+  .price {
+    @apply font-mono text-sm tabular-nums text-anil-500;
+  }
+}
+
+/*
+ * Motivo de firma: luz y sombra de patio.
+ * Franjas de sombra proyectada (como un techo de cañizo / toldo de rafia).
+ * El desplazamiento fino lo controla GSAP vía la variable --patio-shift;
+ * el keyframe css es el fallback si JS no corre.
+ */
+.patio-shadows {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.patio-shadows::before {
+  content: '';
+  position: absolute;
+  inset: -20% -30%;
+  transform: translateX(var(--patio-shift, 0px)) skewX(-13deg);
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 46px,
+    rgba(30, 58, 76, 0.055) 46px,
+    rgba(30, 58, 76, 0.055) 74px,
+    transparent 74px,
+    transparent 120px
+  );
+  will-change: transform;
+}
+
+/* Variante más marcada para secciones oscuras (sombra en luz, no luz en sombra) */
+.patio-shadows--light::before {
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 46px,
+    rgba(247, 242, 233, 0.06) 46px,
+    rgba(247, 242, 233, 0.06) 74px,
+    transparent 74px,
+    transparent 120px
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .patio-shadows::before {
+    transform: skewX(-13deg);
+  }
+}
+
+/* Utilidad: número tabular para contadores */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
