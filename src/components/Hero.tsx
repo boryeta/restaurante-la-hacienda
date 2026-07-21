@@ -6,6 +6,8 @@ import { AMBIENTE_FOTO } from '../data/media';
 import { AmbienteTabs } from './AmbienteTabs';
 import { PatioLight } from './PatioLight';
 import { Img } from './Img';
+import { MagneticButton } from './MagneticButton';
+import { Parallax } from './Parallax';
 
 /**
  * Hero cinematográfico con foto REAL del local. El selector de ambiente
@@ -48,15 +50,17 @@ export function Hero() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 1.1, ease: 'easeInOut' }}
-              className="absolute inset-0"
+              className="absolute inset-0 overflow-hidden"
             >
-              <Img
-                foto={foto}
-                priority
-                sizes="100vw"
-                className="h-full w-full"
-                imgClassName="ken-burns"
-              />
+              <Parallax amount={30} className="absolute inset-0">
+                <Img
+                  foto={foto}
+                  priority
+                  sizes="100vw"
+                  className="h-[118%] w-full"
+                  imgClassName="ken-burns"
+                />
+              </Parallax>
             </motion.div>
           </AnimatePresence>
         )}
@@ -135,9 +139,9 @@ export function Hero() {
 
         {/* CTA */}
         <div className="mt-8 flex flex-wrap items-center gap-3">
-          <a href={`tel:${RESTAURANTE.telefonoTel}`} className="btn-cta">
+          <MagneticButton href={`tel:${RESTAURANTE.telefonoTel}`} className="btn-cta">
             Reservar · {RESTAURANTE.telefono}
-          </a>
+          </MagneticButton>
           <a href="#carta" className="btn-ghost border-cal-50/30 text-cal-50 hover:bg-cal-50/10">
             Ver la carta
           </a>

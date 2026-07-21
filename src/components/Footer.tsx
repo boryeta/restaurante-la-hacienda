@@ -1,4 +1,5 @@
 import { RESTAURANTE, DIRECCION_LINEA } from '../data/restaurante';
+import { MagneticButton } from './MagneticButton';
 
 export function Footer() {
   return (
@@ -12,9 +13,9 @@ export function Footer() {
           Tú eliges el momento.
         </h2>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <a href={`tel:${RESTAURANTE.telefonoTel}`} className="btn-cta">
+          <MagneticButton href={`tel:${RESTAURANTE.telefonoTel}`} className="btn-cta">
             Reservar · {RESTAURANTE.telefono}
-          </a>
+          </MagneticButton>
           <a
             href={`mailto:${RESTAURANTE.email}`}
             className="btn-ghost border-cal-50/30 text-cal-50 hover:bg-cal-50/10"

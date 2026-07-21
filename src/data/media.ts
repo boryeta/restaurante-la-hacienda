@@ -38,8 +38,8 @@ export const LOCAL = {
     webp: `${L}/salon.webp`,
     jpg: `${L}/salon.jpg`,
     alt: 'Salón interior con mesas de madera natural, lámparas de mimbre y plantas colgantes junto a los ventanales',
-    w: 400,
-    h: 300,
+    w: 800,
+    h: 600,
     bg: '#2e3a2a',
   },
 } as const satisfies Record<string, Foto>;

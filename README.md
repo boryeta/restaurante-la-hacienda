@@ -47,8 +47,16 @@ npm run lint     # typecheck (tsc --noEmit)
 
 - **`prefers-reduced-motion`:** si el usuario pide movimiento reducido, la maqueta
   3D se sustituye por la **foto real** del ambiente (sin perder la funcionalidad de
-  elegir espacio). Los contadores muestran el valor final, las franjas de patio, el
-  Ken Burns y el marquee quedan estáticos.
+  elegir espacio). Además se desactivan el smooth-scroll (Lenis), el parallax, los
+  botones magnéticos y el Ken Burns; los contadores y el marquee muestran su estado
+  final estático.
+
+### Interacciones premium
+- **Smooth scroll (Lenis)** sincronizado con GSAP ScrollTrigger.
+- **Cabecera fija** que aparece al pasar el hero + **barra flotante de reserva** en
+  móvil (mejor conversión).
+- **Barra de progreso** de lectura, **botones magnéticos** en los CTA y **parallax**
+  sutil en el hero.
 - **Sin WebGL:** mismo fallback a foto real.
 - **Móvil:** el selector funciona por *tap* (no por hover). En dispositivos de
   gama baja se reduce el DPR y se desactivan sombras suaves.
